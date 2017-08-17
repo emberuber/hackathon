@@ -1,0 +1,32 @@
+{
+  "scripts": {
+    "start-local": "webpack-dev-server --env.local --progress --hot --port 3030 --open",
+    "start": "webpack-dev-server --progress --hot --port 3030 --open",
+    "build": "NODE_ENV=production webpack --env.prod=true"
+  },
+  "dependencies": {
+    "d3-request": "^1.0.5",
+    "deck.gl": "^4.0.6",
+    "google-map-react": "^0.24.0",
+    "immutable": "^3.8.1",
+    "luma.gl": "^3.0.0",
+    "react": "^15.5.4",
+    "react-bootstrap": "^0.30.8",
+    "react-burger-menu": "^2.0.2",
+    "react-dom": "^15.5.4",
+    "react-dropdown": "^1.2.1",
+    "react-input-autosize": "1.1.0",
+    "react-map-gl": "^2.0.0",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "react-select": "^1.0.0-rc.3",
+    "simple-react-button": "^1.3.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "buble-loader": "^0.4.0",
+    "eslint": "^3.19.0",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
+  }
+}

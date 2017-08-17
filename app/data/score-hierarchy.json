@@ -1,0 +1,39 @@
+[
+	{
+		“level”: 0,
+		“name”: “root”,
+		“subscores”: [
+			{
+				“level”: 1,
+				“name”: ”amenity”,
+				“subscores”: []	
+			},
+			{
+				“level”: 1,
+				“name”: ”quality”,
+				“subscores”: []	
+			},
+			{
+				“level”: 1,
+				“name”: ”safety”,
+				“subscores”: []	
+			},
+			{
+				“level”: 1,
+				“name”: ”scene”,
+				“subscores”: [
+					{
+						“level”: 2,
+						“name”: ”collision”,
+						“subscores”: []	
+					},
+					{
+						“level”: 2,
+						“name”: ”blind curve”,
+						“subscores”: []	
+					},
+				]	
+			},
+		]
+	}
+]
