@@ -4,7 +4,7 @@ AddPoint.addEventListener('submit', (e) => {
   const lat = AddPoint.querySelector('.lat').value
   const lng = AddPoint.querySelector('.lng').value
   const isIllegalPoint = false
-  post('/addPoint', { lat, lng, isIllegalPoint })
+  get('/getAllPoints', {})
 })
 function post (path, data) {
   return window.fetch(path, {
@@ -14,5 +14,14 @@ function post (path, data) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
+  })
+}
+function get (path, data) {
+  return window.fetch(path, {
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
   })
 }

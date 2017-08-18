@@ -1,6 +1,6 @@
 const knex = require('knex')(require('./knexfile'))
-module.exports = {
-  addPoint ({ lat, lng, isIllegalPoint }) {
+
+ var addPoint  = function({ lat, lng, isIllegalPoint }) {
     console.log(`lat: ${lat} lng: ${lng} isIllegalPoint: ${isIllegalPoint}`)
     return knex('point').insert({
       lat,
@@ -8,4 +8,12 @@ module.exports = {
       isIllegalPoint
     })
   }
-}
+
+
+  var getAllPoints = function(){
+  	console.log("getting all points")
+  	return knex.select().table('point')
+  };
+
+  module.exports.addPoint = addPoint;
+  module.exports.getAllPoints = getAllPoints;

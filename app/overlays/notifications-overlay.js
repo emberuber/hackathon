@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 
-import DeckGL, {ScatterplotLayer, LineLayer} from 'deck.gl';
+import DeckGL, {ScatterplotLayer, LineLayer, ArcLayer} from 'deck.gl';
 
 const strokeWidth = 12;
+
 
 
 function getSize(viewport) {
@@ -10,18 +11,19 @@ function getSize(viewport) {
   return -0.05714285714*zoom + 1.24285714286  
 }
 
+function getCurrentColor(){
+  return [88, 158, 194, 255]
+}
+
 function getRouteColor(){
-    return [43, 191, 203, 400]; 
+
+    return [0, 0, 0, 100]; 
 }
 
 //get color for the line layers
 function getColor(notificationDescription){
-    if (notificationDescription === "Watch out for pedestrians"){
-      return [43, 191, 203, 255]
-    } else {
-      return [244, 69, 69, 255]
-    }
-
+    return [0, 0, 0, 255]
+  
 }
 
 function onHover(message){
@@ -47,11 +49,9 @@ export default class NotificationsOverlay extends Component {
   }
 
   render() {
-    const {viewport,  notifications, directions} = this.props;
-
-    if (!notifications) {
-      return null;
-    }
+    const {viewport,  notifications, directions, currentLocation, arcs} = this.props;
+    console.log(currentLocation)
+    console.log(notifications)
 
 
     //idea: do scatterplot points for dotted line - interpolate between route distances
@@ -60,7 +60,7 @@ export default class NotificationsOverlay extends Component {
         id: 'notifications',
         data: notifications,
         radiusScale: 20,
-        getPosition: d => d.point.coordinates,
+        getPosition: d => d.coordinates,
         getColor: d => getColor(d.notificationDescription),
         getRadius: d => getSize(viewport),
         radiusMinPixels: 10,
@@ -71,17 +71,29 @@ export default class NotificationsOverlay extends Component {
         onHover: this.props.onHover
 
       }),
-      //todo is to change the data coming in
-      new LineLayer({
-        id: 'directions',
-        data: directions,
-        strokeWidth,
-        fp64: false,
-        getSourcePosition: d => d.start,
-        getTargetPosition: d => d.end,
-        getColor: d => getRouteColor(),
-        pickable: Boolean(this.props.onHover),
+      new ScatterplotLayer({
+        id: 'currentLocation',
+        data: currentLocation,
+        radiusScale: 20,
+        getPosition: d => d.coordinates,
+        getColor: d => getCurrentColor(),
+        getRadius: d => getSize(viewport),
+        updateTriggers: {
+          getRadius: viewport
+        },
+        pickable: true,
         onHover: this.props.onHover
+
+      }),
+      //todo is to change the data coming in
+      new ArcLayer({
+        id: 'arc',
+        data: arcs,
+        getSourcePosition: d => d.source,
+        getTargetPosition: d => d.target,
+        getSourceColor: d => getRouteColor(),
+        getTargetColor: d => getColor("goodbye"),
+        strokeWidth
       })
     ];
 

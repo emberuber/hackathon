@@ -39,15 +39,16 @@ class Root extends PureComponent {
   }
 
   //Render the Root component
+          //   <div id="navbar">
+          //   <NodalNav />
+          // </div>
   render() {
 
     return (
 
       <Router>
         <div>
-          <div id="navbar">
-            <NodalNav />
-          </div>
+
           <div id="container">
             <Route 
               exact path='/' 
@@ -55,7 +56,7 @@ class Root extends PureComponent {
             </Route>
             <Route 
               path='/Recommendations' 
-              component={Recommendations}>
+              component={Notifications}>
             </Route>
             <Route 
               path='/Clusters' 
@@ -89,8 +90,8 @@ class Root extends PureComponent {
 
 const Home = () => (
   <div>
-  <Recommendations>
-  </Recommendations>
+  <Notifications>
+  </Notifications>
   </div>
 )
 

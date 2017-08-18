@@ -42,13 +42,13 @@ module.exports = {
 	},
 
 	 // Calculate the distance between two points in km
-	 CalculateDistanceBetweenLocations: function(startPoint, endPoint) {
+	 CalculateDistanceBetweenLocations: function(lat1, lon1, lat2, lon2) {
 
-		    let lat1 = DegToRad(startPoint[1]);
-		    let lon1 = DegToRad(startPoint[0]);
+		    lat1 = DegToRad(lat1);
+		    lon1 = DegToRad(lon1);
 
-		    let lat2 = DegToRad(endPoint[1]);
-		    let lon2 = DegToRad(endPoint[0]);
+		    lat2 = DegToRad(lat2);
+		    lon2 = DegToRad(lon2);
 
 		    let deltaLat = lat2 - lat1;
 		    let deltaLon = lon2 - lon1;
